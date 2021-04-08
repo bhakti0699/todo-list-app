@@ -12,28 +12,20 @@ class FormInput extends Component {
     constructor(props)
     {
         super(props);
-        const ischecked=localStorage.getItem("todolist");
-        if(ischecked === null)
-        {
-            this.todo = []
-        }
-        else
-        {
-            this.todo=JSON.parse(ischecked);
-        }
-        this.state={this:this.todo};
+
+        this.state={
+          todos:[]
+        };
     }
-    handleKeyPress(e)
+    addItem(value)
     {
-        if(e.key === "Enter")
-        {
-          e.preventDefault();
-          this.todo.push({"task_name":document.getElementById("task").value,"completeStatus":false});
-          localStorage.setItem("todolist",JSON.stringify(this.todo));
-          document.getElementById("task").value="";
-          alert(this.todo);
-          alert(this.state);
-        }
+      var newTask={
+        id:Date.now(),
+        taskName:value,
+        completeStatus:false
+      };
+      this.setState({todos:newTask,});
+      alert(this.state.todos);
     }
   render() {
     return (
@@ -47,7 +39,13 @@ class FormInput extends Component {
                 id="task"
                 className="task"
                 placeholder="Enter Your task:"
-                onKeyDown={this.handleKeyPress}
+                onKeyPress={event => { if(event.key === "Enter")
+                {
+                  event.preventDefault();
+                  this.addItem(event.target.value);
+                  event.target.value="";
+                }}
+              }
               />
               <InputGroupAddon addonType="prepend">
               <Button color="primary">+</Button>
