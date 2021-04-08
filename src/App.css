@@ -1,0 +1,19 @@
+html {
+    height: 100%;
+  }
+  
+  body {
+    height: auto;
+    background: #e9eaed;
+    font: 14px 'Open Sans', sans-serif;
+  }
+  .clear
+  {
+      color: darkgray;
+      font-weight: 600;
+      cursor: pointer;
+  }
+  .clear:hover
+  {
+      color: cornflowerblue;
+  }
