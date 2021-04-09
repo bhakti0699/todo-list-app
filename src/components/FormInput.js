@@ -63,7 +63,7 @@ class FormInput extends Component {
       items.map(item=>{      
         if(item.id===key){
           console.log(item.id +"    "+key)
-          item.taskName= text;
+          return item.taskName= text;
         }
       })
       this.setState({
