@@ -62,7 +62,6 @@ class FormInput extends Component {
       const items = this.state.todos;
       items.map(item=>{      
         if(item.id===key){
-          console.log(item.id +"    "+key)
           return item.taskName= text;
         }
       })
