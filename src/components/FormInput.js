@@ -72,31 +72,6 @@ class FormInput extends Component {
       
      
     }
-        /*this.addItem=this.addItem.bind(this);
-        this.deleteItem=this.deleteItem.bind(this);*/
-    /*deleteItem(id)
-    {
-      var filterItems = this.state.todo.filter(function(item)
-      {
-        return (item.id!==id);
-      });
-      this.setState({todo:filterItems});
-    }
-    addItem()
-    {
-      const newItem=this.state.currentItem;
-      if(newItem.taskName!=="")
-      {
-        const item=[...this.state.todo,newItem];
-        this.setState({todo:item,
-        currentItem:{
-          id:'',
-          taskName:'',
-          completeStatus:''
-        }})
-      }
-    }*/
-    
   render() {
     return (
       <Container className="App">
