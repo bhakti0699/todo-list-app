@@ -60,16 +60,15 @@ class FormInput extends Component {
     setUpdate(text,key){
       console.log("items:"+this.state.todos);
       const items = this.state.todos;
-      items.map(item=>{      
-        if(item.id===key){
-          return item.taskName= text;
+      items.forEach((item) => {
+        if(item.id === key)
+        {
+          item.taskName=text;
         }
       })
       this.setState({
         todos: items
       })
-      
-     
     }
   render() {
     return (
