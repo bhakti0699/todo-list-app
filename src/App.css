@@ -17,3 +17,17 @@ html {
   {
       color: cornflowerblue;
   }
+  .list_main .list
+  {
+    color:#333;
+    font-weight: 700;
+    background-color:white;
+    word-break: break-all;
+    box-shadow: 1px 1px 2px #333;
+    border-radius: 8px;
+  }
+  .list_main .list input
+  {
+    background-color: transparent;
+    border:  0;
+  }

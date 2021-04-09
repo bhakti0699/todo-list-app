@@ -6,31 +6,101 @@ import {
 } from 'reactstrap';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import TodoItems from './TodoItems';
 
 class FormInput extends Component {
 
-    constructor(props)
-    {
-        super(props);
-
-        this.state={
-          todos:[]
-        };
+    constructor(props){
+      super(props);
+      this.state = {
+        todos:[],
+        currentItem:{
+          id:'',
+          taskName:'',
+          completeStatus:''
+        }
+      }
+      this.addItem = this.addItem.bind(this);
+      this.handleInput = this.handleInput.bind(this);
+      this.deleteItem = this.deleteItem.bind(this);
+      this.setUpdate = this.setUpdate.bind(this);
     }
-    addItem(value)
-    {
-      var newTask={
-        id:Date.now(),
-        taskName:value,
-        completeStatus:false
-      };
-      this.setState({todos:newTask,});
-      alert(this.state.todos);
+    addItem(e){
+      e.preventDefault();
+      const newItem = this.state.currentItem;
+      if(newItem.taskName !==""){
+        const items = [...this.state.todos, newItem];
+      this.setState({
+        todos: items,
+        currentItem:{
+          taskName:'',
+          id:'',
+          completeStatus:''
+        }
+      })
+      }
     }
+    handleInput(e){
+      this.setState({
+        currentItem:{
+          taskName: e.target.value,
+          id: Date.now(),
+          completeStatus:'false'
+        }
+      })
+    }
+    deleteItem(key){
+      const filteredItems= this.state.todos.filter(item =>
+        item.id!==key);
+      this.setState({
+        todos: filteredItems
+      })
+  
+    }
+    setUpdate(text,key){
+      console.log("items:"+this.state.todos);
+      const items = this.state.todos;
+      items.map(item=>{      
+        if(item.id===key){
+          console.log(item.id +"    "+key)
+          item.taskName= text;
+        }
+      })
+      this.setState({
+        todos: items
+      })
+      
+     
+    }
+        /*this.addItem=this.addItem.bind(this);
+        this.deleteItem=this.deleteItem.bind(this);*/
+    /*deleteItem(id)
+    {
+      var filterItems = this.state.todo.filter(function(item)
+      {
+        return (item.id!==id);
+      });
+      this.setState({todo:filterItems});
+    }
+    addItem()
+    {
+      const newItem=this.state.currentItem;
+      if(newItem.taskName!=="")
+      {
+        const item=[...this.state.todo,newItem];
+        this.setState({todo:item,
+        currentItem:{
+          id:'',
+          taskName:'',
+          completeStatus:''
+        }})
+      }
+    }*/
+    
   render() {
     return (
       <Container className="App">
-        <Form className="form">
+        <Form className="form" onSubmit={this.addItem}>
           <Col sm="12" className="col-md-6 offset-md-3">
             <InputGroup>
               <Input
@@ -39,21 +109,20 @@ class FormInput extends Component {
                 id="task"
                 className="task"
                 placeholder="Enter Your task:"
-                onKeyPress={event => { if(event.key === "Enter")
-                {
-                  event.preventDefault();
-                  this.addItem(event.target.value);
-                  event.target.value="";
-                }}
-              }
+                value={this.state.currentItem.taskName}
+                onChange={this.handleInput}
               />
               <InputGroupAddon addonType="prepend">
-              <Button color="primary">+</Button>
+              <Button color="primary" type="submit">+</Button>
               </InputGroupAddon>
             </InputGroup>
             <span className="clear p-2">Clear ToDo List</span>
           </Col>
         </Form>
+        <TodoItems 
+                  enteries={this.state.todos}
+                  delete={this.deleteItem}
+                  update={this.setUpdate}/>
       </Container>
     );
   }
