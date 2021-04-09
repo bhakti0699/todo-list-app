@@ -3,7 +3,7 @@ import {
     Container, Col, Row
   } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { TrashFill , PencilSquare, CheckCircleFill, Trash} from 'react-bootstrap-icons';
+import { Trash} from 'react-bootstrap-icons';
 import FlipMove from "react-flip-move";
 class TodoItems extends Component
 {
