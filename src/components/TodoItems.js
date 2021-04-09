@@ -12,12 +12,12 @@ class TodoItems extends Component
         const items = this.props.enteries;
         const listItems = items.map(item =>
         {
-            return <div className="list p-2 m-2" key={item.id}>
+            return <div sm="12" className="list p-2 m-2" key={item.id}>
                  <input type="text" id={item.id} value={item.taskName} onChange={(e)=>{
                 this.props.update(e.target.value,item.id)}}/>
             <span>
        
-        <Trash className="text-danger float-right " onClick={() => {
+        <Trash className="text-danger float-right" onClick={() => {
             this.props.delete(item.id)
         }}/>
         </span>

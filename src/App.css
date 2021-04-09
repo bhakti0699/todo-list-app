@@ -29,5 +29,5 @@ html {
   .list_main .list input
   {
     background-color: transparent;
-    border:  0;
+    border:none;
   }
